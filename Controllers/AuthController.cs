@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Project.API.Data;
 using Project.API.Dtos;
 using Project.API.Models;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Project.API.Controllers
 {
@@ -72,6 +73,22 @@ namespace Project.API.Controllers
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
 
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = creds
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+
+            return Ok(new {
+                token = tokenHandler.WriteToken(token)
+            });
         }
                
     }
