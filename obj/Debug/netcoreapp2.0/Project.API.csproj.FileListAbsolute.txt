@@ -8,3 +8,14 @@ C:\Users\Kacper\Praktyki\PracaInz\Project.API\Project.API\obj\Debug\netcoreapp2.
 C:\Users\Kacper\Praktyki\PracaInz\Project.API\Project.API\obj\Debug\netcoreapp2.0\Project.API.AssemblyInfo.cs
 C:\Users\Kacper\Praktyki\PracaInz\Project.API\Project.API\obj\Debug\netcoreapp2.0\Project.API.dll
 C:\Users\Kacper\Praktyki\PracaInz\Project.API\Project.API\obj\Debug\netcoreapp2.0\Project.API.pdb
+C:\Projekty\PracaInz\Project.API\Project.API\bin\Debug\netcoreapp2.0\Project.API.deps.json
+C:\Projekty\PracaInz\Project.API\Project.API\bin\Debug\netcoreapp2.0\Project.API.runtimeconfig.json
+C:\Projekty\PracaInz\Project.API\Project.API\bin\Debug\netcoreapp2.0\Project.API.runtimeconfig.dev.json
+C:\Projekty\PracaInz\Project.API\Project.API\bin\Debug\netcoreapp2.0\Project.API.dll
+C:\Projekty\PracaInz\Project.API\Project.API\bin\Debug\netcoreapp2.0\Project.API.pdb
+C:\Projekty\PracaInz\Project.API\Project.API\obj\Debug\netcoreapp2.0\Project.API.csprojAssemblyReference.cache
+C:\Projekty\PracaInz\Project.API\Project.API\obj\Debug\netcoreapp2.0\Project.API.csproj.CoreCompileInputs.cache
+C:\Projekty\PracaInz\Project.API\Project.API\obj\Debug\netcoreapp2.0\Project.API.AssemblyInfoInputs.cache
+C:\Projekty\PracaInz\Project.API\Project.API\obj\Debug\netcoreapp2.0\Project.API.AssemblyInfo.cs
+C:\Projekty\PracaInz\Project.API\Project.API\obj\Debug\netcoreapp2.0\Project.API.dll
+C:\Projekty\PracaInz\Project.API\Project.API\obj\Debug\netcoreapp2.0\Project.API.pdb

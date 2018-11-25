@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\Kacper\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Kacper\\.nuget\\packages",
+      "C:\\Users\\KacPC\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\KacPC\\.nuget\\packages",
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
     ]
   }
