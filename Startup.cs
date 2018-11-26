@@ -31,6 +31,7 @@ namespace Project.API
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
             services.AddCors();
+            services.AddScoped<IApplicationRepository, ApplicationRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options => {
@@ -41,7 +42,11 @@ namespace Project.API
                                     ValidateIssuer = false,
                                     ValidateAudience = false
                             };
-                    });            
+                    });
+            services.AddMvc().AddJsonOptions(opt =>
+            {
+                opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
