@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Project.API.Data;
+using Project.API.Helpers;
 
 namespace Project.API
 {
@@ -29,6 +30,7 @@ namespace Project.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddMvc();
             services.AddCors();
             services.AddScoped<IApplicationRepository, ApplicationRepository>();

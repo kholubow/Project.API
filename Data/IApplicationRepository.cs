@@ -7,5 +7,6 @@ namespace Project.API.Data
     public interface IApplicationRepository
     {
         Task<List<User>> GetUsers();
+        Task<User> GetUser(int id);
     }
 }
