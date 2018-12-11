@@ -45,8 +45,7 @@ namespace Project.API.Controllers
                 DateOfBirth = userForRegisterDto.DateOfBirth,
                 City = userForRegisterDto.City,
                 Country = userForRegisterDto.Country,
-                Introduction = userForRegisterDto.Introduction,
-                Interests = userForRegisterDto.Interests
+                Position = userForRegisterDto.Position
             };
 
             var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
