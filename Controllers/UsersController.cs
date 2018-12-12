@@ -62,5 +62,35 @@ namespace Project.API.Controllers
 
         }
  */
+
+        [HttpPost("addInstance/{userId}")]
+        public async Task<IActionResult> AddInstanceForUser(int userId, [FromBody]InstanceForCreationDto instanceForCreationDto)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var userFromRepo = await _repo.GetUser(userId);
+
+            var instanceToCreate = new Instance 
+            {
+                Content = instanceForCreationDto.Content,
+                InstanceStart = instanceForCreationDto.InstanceStart,
+                InstanceEnd = instanceForCreationDto.InstanceEnd,
+                TypeOfInstance = instanceForCreationDto.TypeOfInstance,
+                UserId = userFromRepo.Id,
+                Username = userFromRepo.Username,
+                UserSurname = userFromRepo.UserSurname,
+                Position = userFromRepo.Position
+            };
+
+            await _context.Instances.AddAsync(instanceToCreate);
+            await _context.SaveChangesAsync();
+            return StatusCode(201);
+
+        }
+        
     }
 }

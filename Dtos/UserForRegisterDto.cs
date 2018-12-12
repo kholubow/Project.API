@@ -26,6 +26,7 @@ namespace Project.API.Dtos
 
         [Required]
         public string Country { get; set; }
+        
         [Required]
         public string Position { get; set; }
     }
