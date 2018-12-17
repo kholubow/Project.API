@@ -91,6 +91,15 @@ namespace Project.API.Controllers
             return StatusCode(201);
 
         }
+
+
+        [HttpGet("getInstances")]
+        public async Task<IActionResult> GetInstances()
+        {
+            var instancesToReturn = await _repo.GetInstances();
+
+            return Ok(instancesToReturn);
+        }
         
     }
 }

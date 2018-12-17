@@ -23,6 +23,14 @@ namespace Project.API.Data
         }
 
 
+        public async Task<List<Instance>> GetInstances()
+        {
+            var instances = await _context.Instances.ToListAsync();
+
+            return instances;
+        }
+
+
         public async Task<User> GetUser(int id)
         {
             var user = await _context.Users.Include(p => p.Photos).FirstOrDefaultAsync(u => u.Id == id);

@@ -8,5 +8,6 @@ namespace Project.API.Data
     {
         Task<List<User>> GetUsers();
         Task<User> GetUser(int id);
+        Task<List<Instance>> GetInstances();
     }
 }
