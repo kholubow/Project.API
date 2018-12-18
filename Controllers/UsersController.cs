@@ -45,8 +45,8 @@ namespace Project.API.Controllers
             return Ok(usersToReturn);
         }
 
-/*
-        [HttpPost("addPhoto")]
+
+        [HttpPost("addPhoto/{userId}")]
         public async Task<IActionResult> AddPhotoForUser(int userId, [FromForm]PhotoForCreationDto photoForCreationDto)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
@@ -58,10 +58,37 @@ namespace Project.API.Controllers
 
             var uploadResult = new ImageUploadResult();
 
+            if (file.Length > 0)
+            {
+                using (var stream = file.OpenReadStream())
+                {
+                    var uploadParams = new ImageUploadParams()
+                    {
+                        File = new FileDescription(file.Name, stream),
+                        Transformation = new Transformation().Width(500).Height(500).Crop("fill").Gravity("face")
+                    };
 
+                    uploadResult = _cloudinary.Upload(uploadParams);
+                }
+            }
+
+            photoForCreationDto.Url = uploadResult.Uri.ToString();
+            photoForCreationDto.PublicId = uploadResult.PublicId;
+
+            var photoToCreate = new Photo
+            {
+                Url = photoForCreationDto.Url,
+                IsMain = true,
+                PublicId = photoForCreationDto.PublicId,
+                UserId = userFromRepo.Id
+            };
+
+            await _context.Photos.AddAsync(photoToCreate);
+            await _context.SaveChangesAsync();
+            return StatusCode(201);
 
         }
- */
+ 
 
         [HttpPost("addInstance/{userId}")]
         public async Task<IActionResult> AddInstanceForUser(int userId, [FromBody]InstanceForCreationDto instanceForCreationDto)
@@ -83,7 +110,9 @@ namespace Project.API.Controllers
                 UserId = userFromRepo.Id,
                 Username = userFromRepo.Username,
                 UserSurname = userFromRepo.UserSurname,
-                Position = userFromRepo.Position
+                Position = userFromRepo.Position,
+                Approval = "false",
+                Reason = ""
             };
 
             await _context.Instances.AddAsync(instanceToCreate);

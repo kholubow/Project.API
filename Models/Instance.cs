@@ -13,5 +13,7 @@ namespace Project.API.Models
         public string UserSurname { get; set; }
         public string Position { get; set; }
         public string TypeOfInstance { get; set; }
+        public string Approval { get; set; }
+        public string Reason { get; set; }
     }
 }
