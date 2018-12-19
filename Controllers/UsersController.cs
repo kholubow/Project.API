@@ -5,6 +5,7 @@ using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Project.API.Data;
 using Project.API.Dtos;
@@ -128,6 +129,58 @@ namespace Project.API.Controllers
             var instancesToReturn = await _repo.GetInstances();
 
             return Ok(instancesToReturn);
+        }
+
+
+        [HttpPost("acceptInstance/{userId}")]
+        public async Task<IActionResult> AcceptInstance(int userId, [FromBody]InstanceToAcceptDto instanceToAcceptDto)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            Instance instanceFromRepo = await _context.Instances.FirstOrDefaultAsync(x => x.Id.Equals(instanceToAcceptDto.Id));
+
+            var instanceToAccept = new Instance {
+                Approval = instanceToAcceptDto.Approval,
+                Reason = ""
+            };
+
+            instanceFromRepo.Approval = instanceToAccept.Approval;
+            instanceFromRepo.Reason = instanceToAccept.Reason;
+
+            _context.Entry(instanceFromRepo).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+            return StatusCode(201);  
+        }
+
+
+        [HttpPost("disapprovalInstance/{userId}")]
+        public async Task<IActionResult> DisapprovalInstance(int userId, [FromBody]InstanceToDisapprovalDto instanceToDisapprovalDto)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            Instance instanceFromRepo = await _context.Instances.FirstOrDefaultAsync(x => x.Id.Equals(instanceToDisapprovalDto.Id));
+
+            var instanceToDisapproval = new Instance {
+                Approval = instanceToDisapprovalDto.Approval,
+                Reason = instanceToDisapprovalDto.Reason
+            };
+
+            instanceFromRepo.Approval = instanceToDisapproval.Approval;
+            instanceFromRepo.Reason = instanceToDisapproval.Reason;
+
+            _context.Entry(instanceFromRepo).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+            return StatusCode(201);  
         }
         
     }
