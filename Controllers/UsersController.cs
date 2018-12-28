@@ -132,6 +132,18 @@ namespace Project.API.Controllers
         }
 
 
+        [HttpGet("getInstancesForWorker/{userId}")]
+        public async Task<IActionResult> GetInstancesForWorker(int userId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var instancesToReturn = await _repo.GetInstancesForWorker(userId);
+
+            return Ok(instancesToReturn);
+        }
+
+
         [HttpPost("acceptInstance/{userId}")]
         public async Task<IActionResult> AcceptInstance(int userId, [FromBody]InstanceToAcceptDto instanceToAcceptDto)
         {
