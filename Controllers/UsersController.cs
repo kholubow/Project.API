@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using CloudinaryDotNet;
@@ -153,8 +154,25 @@ namespace Project.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            var workersWithSamePosition = 0;
+
+            var instancesTable = await _context.Instances.ToArrayAsync();
+
             Instance instanceFromRepo = await _context.Instances.FirstOrDefaultAsync(x => x.Id.Equals(instanceToAcceptDto.Id));
 
+            workersWithSamePosition = await _context.Users.CountAsync(u => u.Position == instanceFromRepo.Position);
+
+            for(int i = 0; i < instancesTable.Length; i++)
+            {
+
+                if (instancesTable[i].Position == instanceFromRepo.Position && instancesTable[i].Approval == "true")
+                    workersWithSamePosition--;
+
+            };
+
+            if (workersWithSamePosition > 2)
+            {
+                
             var instanceToAccept = new Instance {
                 Approval = instanceToAcceptDto.Approval,
                 Reason = ""
@@ -166,6 +184,11 @@ namespace Project.API.Controllers
             _context.Entry(instanceFromRepo).State = EntityState.Modified;
 
             await _context.SaveChangesAsync();
+
+            } else {
+                return BadRequest();
+            };
+
             return StatusCode(201);  
         }
 
