@@ -14,9 +14,6 @@ namespace Project.API.Data
         }
 
 
-
-
-
         public async Task<User> Login(string username, string password)
         {
             var user = await _context.Users.Include(p => p.Photos).FirstOrDefaultAsync(x => x.Username == username);
@@ -32,6 +29,7 @@ namespace Project.API.Data
             return user;
         }
 
+
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
                 using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
@@ -44,9 +42,6 @@ namespace Project.API.Data
                 }
                 return true;
         }
-
-
-
 
 
         public async Task<User> Register(User user, string password)
@@ -63,6 +58,7 @@ namespace Project.API.Data
             return user;          
         }
 
+
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
            using (var hmac = new System.Security.Cryptography.HMACSHA512())
@@ -71,9 +67,6 @@ namespace Project.API.Data
                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
            }
         }
-
-
-
 
 
         public async Task<bool> UserExists(string username)
