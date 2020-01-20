@@ -9,6 +9,7 @@ namespace Project.API.Data
         Task<List<User>> GetUsers();
         Task<User> GetUser(int id);
         Task<List<Instance>> GetInstances();
+        Task<List<Bill>> GetBills();
         Task<List<Instance>> GetInstancesForWorker(int id);
     }
 }

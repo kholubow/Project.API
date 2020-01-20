@@ -12692,11 +12692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projekty\\PracaInz\\Project.API\\Project.API\\Project.API.csproj",
+      "projectUniqueName": "c:\\Projekty\\PracaInz\\Project.API\\Project.API\\Project.API.csproj",
       "projectName": "Project.API",
-      "projectPath": "C:\\Projekty\\PracaInz\\Project.API\\Project.API\\Project.API.csproj",
+      "projectPath": "c:\\Projekty\\PracaInz\\Project.API\\Project.API\\Project.API.csproj",
       "packagesPath": "C:\\Users\\KacPC\\.nuget\\packages\\",
-      "outputPath": "C:\\Projekty\\PracaInz\\Project.API\\Project.API\\obj\\",
+      "outputPath": "c:\\Projekty\\PracaInz\\Project.API\\Project.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -9,5 +9,6 @@ namespace Project.API.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Instance> Instances { get; set; }
+        public DbSet<Bill> Bills { get; set; }
     }
 }

@@ -124,6 +124,33 @@ namespace Project.API.Controllers
         }
 
 
+        [HttpPost("addBill/{userId}")]
+        public async Task<IActionResult> AddBill(int userId, [FromBody]BillToAddDto billToAddDto)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var userFromRepo = await _repo.GetUser(userId);
+
+            var billToCreate = new Bill 
+            {
+                Name = billToAddDto.Name,
+                Salesman = billToAddDto.Salesman,
+                Buyer = billToAddDto.Buyer,
+                ServiceName = billToAddDto.ServiceName,
+                Price = billToAddDto.Price,
+                PaymentMethod = billToAddDto.PaymentMethod
+            };
+
+            await _context.Bills.AddAsync(billToCreate);
+            await _context.SaveChangesAsync();
+            return StatusCode(201);
+
+        }
+
         [HttpGet("getInstances")]
         public async Task<IActionResult> GetInstances()
         {
@@ -132,6 +159,13 @@ namespace Project.API.Controllers
             return Ok(instancesToReturn);
         }
 
+        [HttpGet("getBills")]
+        public async Task<IActionResult> GetBills()
+        {
+            var billsToReturn = await _repo.GetBills();
+
+            return Ok(billsToReturn);
+        }
 
         [HttpGet("getInstancesForWorker/{userId}")]
         public async Task<IActionResult> GetInstancesForWorker(int userId)

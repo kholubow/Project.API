@@ -30,6 +30,13 @@ namespace Project.API.Data
             return instances;
         }
 
+        public async Task<List<Bill>> GetBills()
+        {
+            var bills = await _context.Bills.ToListAsync();
+
+            return bills;
+        }
+
 
         public async Task<List<Instance>> GetInstancesForWorker(int id)
         {
