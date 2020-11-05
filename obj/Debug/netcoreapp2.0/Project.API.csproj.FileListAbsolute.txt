@@ -19,3 +19,17 @@ C:\Projekty\PracaInz\Project.API\Project.API\obj\Debug\netcoreapp2.0\Project.API
 C:\Projekty\PracaInz\Project.API\Project.API\obj\Debug\netcoreapp2.0\Project.API.AssemblyInfo.cs
 C:\Projekty\PracaInz\Project.API\Project.API\obj\Debug\netcoreapp2.0\Project.API.dll
 C:\Projekty\PracaInz\Project.API\Project.API\obj\Debug\netcoreapp2.0\Project.API.pdb
+C:\github\Project.API\bin\Debug\netcoreapp2.0\appsettings.Development.json
+C:\github\Project.API\bin\Debug\netcoreapp2.0\appsettings.json
+C:\github\Project.API\bin\Debug\netcoreapp2.0\Project.API.deps.json
+C:\github\Project.API\bin\Debug\netcoreapp2.0\Project.API.runtimeconfig.json
+C:\github\Project.API\bin\Debug\netcoreapp2.0\Project.API.runtimeconfig.dev.json
+C:\github\Project.API\bin\Debug\netcoreapp2.0\Project.API.dll
+C:\github\Project.API\bin\Debug\netcoreapp2.0\Project.API.pdb
+C:\github\Project.API\obj\Debug\netcoreapp2.0\Project.API.csprojAssemblyReference.cache
+C:\github\Project.API\obj\Debug\netcoreapp2.0\Project.API.AssemblyInfoInputs.cache
+C:\github\Project.API\obj\Debug\netcoreapp2.0\Project.API.AssemblyInfo.cs
+C:\github\Project.API\obj\Debug\netcoreapp2.0\Project.API.csproj.CoreCompileInputs.cache
+C:\github\Project.API\obj\Debug\netcoreapp2.0\Project.API.dll
+C:\github\Project.API\obj\Debug\netcoreapp2.0\Project.API.pdb
+C:\github\Project.API\obj\Debug\netcoreapp2.0\Project.API.genruntimeconfig.cache
